@@ -203,35 +203,82 @@ Frontend Engineer → 25%
 
 # 4. How LLMs Work
 
-LLMs learn from massive datasets containing text from books, articles, websites, and code repositories.
+LLMs go through two major phases:
 
-They do not memorize complete answers.
+1. **Training Phase** – The model learns language patterns from massive datasets.
+2. **Inference Phase** – The trained model generates responses to user prompts.
 
-Instead, they learn language patterns and predict the most probable next token based on the previous tokens.
-
----
-
-## LLM Processing Flow
+## End-to-End LLM Flow
 
 ```text
-Training Data
-      │
-      ▼
-Tokenization
-      │
-      ▼
-Deep Neural Network
-      │
-      ▼
-Next Token Prediction
-      │
-      ▼
-Generated Response
+                TRAINING PHASE
+
+        Massive Text Dataset
+                 │
+                 ▼
+        Data Preprocessing
+                 │
+                 ▼
+          Tokenization
+                 │
+                 ▼
+          Word Embeddings
+                 │
+                 ▼
+     Transformer Neural Network
+        (Self-Attention Layers)
+                 │
+                 ▼
+      Predict Next Token
+                 │
+                 ▼
+         Calculate Loss
+                 │
+                 ▼
+        Backpropagation
+                 │
+                 ▼
+      Update Model Parameters
+                 │
+                 ▼
+          Fine-Tuning
+
+                INFERENCE PHASE
+
+      User Prompt
+            │
+            ▼
+      Tokenization
+            │
+            ▼
+      Embeddings
+            │
+            ▼
+ Transformer + Self-Attention
+            │
+            ▼
+ Predict Next Token
+            │
+            ▼
+ Repeat Token Prediction
+            │
+            ▼
+    Final Response
 ```
 
----
+## Explanation
 
-### Example
+1. **Data Collection** – The model is trained using books, websites, documentation, research papers, and source code.
+2. **Data Preprocessing** – The text is cleaned, filtered, and prepared for training.
+3. **Tokenization** – Text is split into tokens (words, subwords, or punctuation).
+4. **Embeddings** – Tokens are converted into numerical vectors that capture semantic meaning.
+5. **Transformer & Self-Attention** – The model analyzes relationships between all tokens in the input and understands context.
+6. **Next Token Prediction** – During training, the model repeatedly predicts the next token.
+7. **Loss Calculation & Backpropagation** – Prediction errors are measured, and model parameters are updated to improve future predictions.
+8. **Fine-Tuning** – The base model is further trained to better follow instructions and produce helpful responses.
+9. **Inference** – When a user asks a question, the trained model tokenizes the prompt, processes it through the transformer, and generates the response one token at a time.
+
+## Example
 
 Input:
 
@@ -245,10 +292,9 @@ Prediction:
 high-level
 ```
 
-The model continues predicting one token after another until the response is complete.
+The model continues predicting one token after another until the complete response is generated.
 
 ---
-
 # 5. Understanding Tokens
 
 ## Definition
@@ -502,31 +548,6 @@ Generated Response
 
 ---
 
-# Summary
-
-| Topic | Description |
-|--------|-------------|
-| LLM | AI model trained on massive text data to understand and generate language. |
-| Prompting | Giving instructions or questions to an LLM to obtain a response. |
-| Embedding | Converting text into vectors for semantic understanding and retrieval. |
-| Tokens | Smallest units of text processed by an LLM. |
-| Token Cost | Total cost depends on input and output tokens. |
-| Zero-Shot Prompting | Asking the model to perform a task without examples. |
-| Few-Shot Prompting | Providing examples before asking the model to perform a task. |
-
----
-
-# Key Takeaways
-
-- LLMs generate human-like text by predicting the next token.
-- Prompt quality significantly impacts the quality of the response.
-- Embeddings help AI understand semantic similarity between texts.
-- Tokens determine how LLMs process text and how API usage is billed.
-- Zero-shot prompting relies on the model's existing knowledge.
-- Few-shot prompting improves consistency by providing examples.
-
-
----
 
 # 10. Video Learnings
 
