@@ -253,6 +253,184 @@ Store in PGVector
 Each document chunk receives its own embedding, allowing more accurate retrieval of relevant information.
 
 ---
+# 5.1 Document Chunking
+
+## What is Chunking?
+
+Chunking is the process of splitting a large document into smaller pieces called **chunks** before generating embeddings.
+
+Instead of creating a single embedding for an entire document, embeddings are generated for each chunk.
+
+Example:
+
+```text
+Original Document
+
+-------------------------------------
+Python is a programming language...
+
+It is widely used in AI...
+
+It also supports web development...
+
+-------------------------------------
+
+↓
+
+Chunk 1
+
+Python is a programming language...
+
+↓
+
+Chunk 2
+
+It is widely used in AI...
+
+↓
+
+Chunk 3
+
+It also supports web development...
+```
+
+Each chunk receives its own embedding and is stored separately in the vector database.
+
+---
+
+## Why is Chunking Needed?
+
+Large documents often exceed the embedding model's context limits.
+
+Chunking provides several benefits:
+
+- Produces more accurate embeddings.
+- Improves semantic search results.
+- Reduces memory usage.
+- Retrieves only the most relevant portions of a document.
+
+Without chunking, searching a large document becomes less efficient and less accurate.
+
+---
+
+# 5.2 Chunk Size
+
+## What is Chunk Size?
+
+Chunk size defines the maximum number of characters (or tokens) contained in each chunk.
+
+Example:
+
+```python
+chunk_size = 1000
+```
+
+This means each chunk contains approximately 1000 characters before being split.
+
+### Small Chunk Size
+
+```text
+Chunk Size = 200
+```
+
+Advantages:
+
+- More precise search results.
+- Better semantic understanding.
+
+Disadvantages:
+
+- Creates many chunks.
+- Requires more storage.
+
+---
+
+### Large Chunk Size
+
+```text
+Chunk Size = 2000
+```
+
+Advantages:
+
+- More context in each chunk.
+- Fewer embeddings to store.
+
+Disadvantages:
+
+- Lower retrieval precision.
+- May include unrelated information.
+
+---
+
+# 5.3 Chunk Overlap
+
+## What is Chunk Overlap?
+
+Chunk overlap specifies how much content is shared between consecutive chunks.
+
+Example:
+
+```python
+chunk_overlap = 200
+```
+
+Suppose:
+
+```text
+Chunk Size = 1000
+
+Chunk Overlap = 200
+```
+
+Then:
+
+```text
+Chunk 1
+
+Characters:
+1 -------------------1000
+
+Chunk 2
+
+Characters:
+801------------------1800
+```
+
+The last 200 characters of Chunk 1 are repeated at the beginning of Chunk 2.
+
+---
+
+## Why Use Chunk Overlap?
+
+Without overlap, important information that spans across chunk boundaries may be lost.
+
+Overlap helps:
+
+- Preserve context between chunks.
+- Improve retrieval accuracy.
+- Reduce information loss.
+
+---
+
+# 5.4 Choosing Chunk Size and Chunk Overlap
+
+Common values used in RAG applications:
+
+```python
+chunk_size = 1000
+chunk_overlap = 200
+```
+
+These values provide a good balance between context preservation and retrieval accuracy.
+
+The optimal values depend on:
+
+- Document size
+- Document type
+- Embedding model
+- Application requirements
+
 
 # 6. Similarity Search
 
@@ -308,6 +486,107 @@ k=3
 ```
 
 Returns the top three most relevant document chunks.
+---
+
+# 6.1 Understanding `k` in Similarity Search
+
+When performing similarity search:
+
+```python
+results = vector_store.similarity_search(
+    "What is Python used for?",
+    k=3
+)
+```
+
+### What is `k`?
+
+`k` specifies the number of most similar document chunks to retrieve.
+
+Example:
+
+```python
+k=3
+```
+
+The vector database returns the **top three** document chunks with the highest semantic similarity to the user's query.
+
+---
+
+### Example
+
+Suppose the vector database contains:
+
+```text
+Chunk A
+Python is a programming language.
+
+Chunk B
+Python is widely used for AI.
+
+Chunk C
+Python supports web development.
+
+Chunk D
+Java is an object-oriented language.
+```
+
+Query:
+
+```text
+"What is Python used for?"
+```
+
+If:
+
+```python
+k = 2
+```
+
+Results:
+
+```text
+1. Python is widely used for AI.
+
+2. Python supports web development.
+```
+
+Only the two most relevant chunks are returned.
+
+---
+
+### Choosing the Right `k`
+
+Small `k`:
+
+```python
+k = 1
+```
+
+- Faster retrieval.
+- Returns only the single most relevant result.
+
+Medium `k`:
+
+```python
+k = 3
+```
+
+- Balanced amount of context.
+- Common choice for RAG systems.
+
+Large `k`:
+
+```python
+k = 10
+```
+
+- Retrieves more context.
+- Increases processing time and token usage.
+
+The value of `k` should be chosen based on the application's retrieval requirements.
+---
+
 
 ---
 

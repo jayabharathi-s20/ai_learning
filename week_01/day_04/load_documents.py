@@ -1,10 +1,13 @@
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader
+
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
 def load_pdf(pdf_path):
 
-    loader = PyPDFLoader(pdf_path)
+    # loader = PyPDFLoader(pdf_path)
+    loader = PyMuPDFLoader(pdf_path)
 
     documents = loader.load()
 
