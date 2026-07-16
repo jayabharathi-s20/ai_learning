@@ -1,10 +1,10 @@
 from langchain_openai import OpenAIEmbeddings
 from langchain_postgres import PGVector
 
-from config import OPENAI_API_KEY, DATABASE_URL
+from config import OPENAI_API_KEY, DATABASE_URL,EMBEDDINGS_MODEL
 
 embeddings = OpenAIEmbeddings(
-    model="text-embedding-3-small",
+    model=EMBEDDINGS_MODEL,
     api_key=OPENAI_API_KEY
 )
 

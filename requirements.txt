@@ -7,4 +7,19 @@ openai==2.45.0
 pgvector==0.3.6
 psycopg-binary==3.3.4
 pypdf==6.14.2
+pymudpdf== 1.28.0
 python-dotenv==1.2.2
+fastapi==0.139.0
+uvicorn==0.51.0
+youtube-transcript-api==1.2.4
+yt-dlp==2026.7.4
+pytube==15.0.0
+docx2txt==0.9
+
+
+python-pptx==1.0.2
+openpyxl==3.1.5
+msoffcrypto-tool==6.0.0 
+pandas==3.0.3
+networkx==3.6.1
+unstructured==0.24.1
