@@ -1,0 +1,181 @@
+PYTHON PROGRAMMING NOTES
+A concise reference guide to core Python concepts
+============================================================
+
+1. INTRODUCTION
+------------------------------------------------------------
+Python is a high-level, interpreted, general-purpose programming
+language known for its readable syntax and broad ecosystem of
+libraries. It supports multiple programming paradigms, including
+procedural, object-oriented, and functional programming.
+
+- Easy to read and write - uses indentation instead of braces
+- Dynamically typed - variable types are determined at runtime
+- Interpreted - code runs line by line via the Python interpreter
+- Widely used in web development, data science, automation, and AI
+
+
+2. VARIABLES AND DATA TYPES
+------------------------------------------------------------
+Variables in Python are created by assignment and do not require
+explicit type declarations.
+
+    x = 10          # int
+    y = 3.14        # float
+    name = "Alice"  # str
+    is_valid = True # bool
+
+Common built-in types:
+- int, float, complex - numeric types
+- str - text/string data
+- bool - True or False
+- list, tuple, set, dict - collection types
+- NoneType - represents absence of a value (None)
+
+
+3. COLLECTIONS
+------------------------------------------------------------
+Lists
+Ordered, mutable sequences that can hold mixed types.
+
+    fruits = ["apple", "banana", "cherry"]
+    fruits.append("date")
+    print(fruits[0])   # apple
+
+Tuples
+Ordered, immutable sequences - useful for fixed collections of values.
+
+    point = (3, 4)
+    x, y = point
+
+Dictionaries
+Unordered key-value pairs, ideal for lookups.
+
+    person = {"name": "Alice", "age": 30}
+    print(person["name"])   # Alice
+
+Sets
+Unordered collections of unique elements.
+
+    nums = {1, 2, 2, 3}
+    print(nums)   # {1, 2, 3}
+
+
+4. CONTROL FLOW
+------------------------------------------------------------
+Conditionals
+
+    age = 18
+    if age >= 18:
+        print("Adult")
+    elif age >= 13:
+        print("Teenager")
+    else:
+        print("Child")
+
+Loops
+
+    for i in range(5):
+        print(i)
+
+    count = 0
+    while count < 3:
+        count += 1
+
+- break - exits a loop immediately
+- continue - skips to the next iteration
+- range(start, stop, step) - generates a sequence of numbers
+
+
+5. FUNCTIONS
+------------------------------------------------------------
+Functions are defined using the def keyword and can accept default,
+positional, and keyword arguments.
+
+    def greet(name, greeting="Hello"):
+        return f"{greeting}, {name}!"
+
+    print(greet("Alice"))
+    print(greet("Bob", greeting="Hi"))
+
+Lambda functions
+Small, anonymous functions defined in a single line.
+
+    square = lambda x: x ** 2
+    print(square(5))   # 25
+
+
+6. OBJECT-ORIENTED PROGRAMMING
+------------------------------------------------------------
+Python supports classes and objects, allowing you to model real-world
+entities with attributes and behaviors.
+
+    class Animal:
+        def __init__(self, name, sound):
+            self.name = name
+            self.sound = sound
+
+        def speak(self):
+            return f"{self.name} says {self.sound}"
+
+    dog = Animal("Dog", "Woof")
+    print(dog.speak())
+
+Key OOP concepts:
+- Inheritance - a class can extend another class
+- Encapsulation - bundling data and methods together
+- Polymorphism - same interface, different implementations
+- self - refers to the current instance of the class
+
+
+7. ERROR HANDLING
+------------------------------------------------------------
+Exceptions allow a program to handle errors gracefully instead of
+crashing.
+
+    try:
+        result = 10 / 0
+    except ZeroDivisionError:
+        print("Cannot divide by zero")
+    finally:
+        print("Done")
+
+
+8. MODULES AND LIBRARIES
+------------------------------------------------------------
+Modules let you organize and reuse code. Python's standard library
+and third-party packages (installed via pip) extend its
+functionality significantly.
+
+    import math
+    print(math.sqrt(16))   # 4.0
+
+    from datetime import datetime
+    print(datetime.now())
+
+- pip install <package> - installs a third-party package
+- Popular libraries: NumPy, pandas, requests, Flask, Django
+
+
+9. FILE HANDLING
+------------------------------------------------------------
+The with statement ensures files are properly closed after use.
+
+    with open("data.txt", "r") as f:
+        content = f.read()
+
+    with open("data.txt", "w") as f:
+        f.write("Hello, file!")
+
+
+10. BEST PRACTICES
+------------------------------------------------------------
+- Follow PEP 8 style guidelines for readable code
+- Use descriptive variable and function names
+- Write docstrings to document functions and classes
+- Use virtual environments to manage project dependencies
+- Handle exceptions instead of letting programs crash
+
+============================================================
+End of notes - a quick reference to help you review core
+Python concepts.
