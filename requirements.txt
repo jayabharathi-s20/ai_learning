@@ -23,3 +23,6 @@ msoffcrypto-tool==6.0.0
 pandas==3.0.3
 networkx==3.6.1
 unstructured==0.24.1
+
+nltk==3.10.0
+alembic==1.18.5
